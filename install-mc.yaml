@@ -1,0 +1,15 @@
+---
+- name: Install Canonical microcloud
+  remote_user: woakley
+  become: yes
+  hosts: all
+
+  tasks:
+
+  - name: install snap pkgs
+    community.general.snap:
+      name:
+        - lxd 
+        - microceph
+        - microovn
+        - microcloud 

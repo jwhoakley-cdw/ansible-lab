@@ -1,0 +1,15 @@
+---
+- name: Ubuntu OS upgrades
+  remote_user: woakley
+  become: yes
+  hosts: all
+
+  tasks:
+
+  - name: perform apt updates
+    apt:
+      force_apt_get: yes
+      name: "*"
+      state: latest
+      update_cache: yes
+      cache_valid_time: 3600

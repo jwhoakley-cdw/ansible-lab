@@ -1,0 +1,25 @@
+---
+- name: Push ssh key to hosts
+  remote_user: woakley
+  hosts: all
+
+  vars:
+    myuser: "woakley"
+    mykey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKM6RyPdC8U59cbAxhgZb0PksYx6HhNxk6NwUk99Y8jR woakley@Wills-Mac-mini.local"
+
+  tasks:
+
+  - name: make directory
+    file:
+      path: "/home/{{myuser}}/.ssh"
+      state: directory
+      mode: '0700'
+  - name: create empty file
+    file:
+      path: "/home/{{myuser}}/.ssh/authorized_keys"
+      state: touch
+      mode: '0600'
+  - name: put pubkey
+    lineinfile:
+      path: "/home/{{myuser}}/.ssh/authorized_keys"
+      line: "{{ mykey }}"

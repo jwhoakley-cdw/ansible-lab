@@ -1,0 +1,9 @@
+---
+- name: GATHER Facts
+  remote_user: woakley
+  become: yes
+  hosts: all
+# hosts: host1
+
+  tasks:
+  - debug: var=ansible_facts
