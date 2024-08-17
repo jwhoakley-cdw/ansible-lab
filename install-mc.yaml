@@ -1,4 +1,5 @@
 ---
+# See: https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html
 - name: Install Canonical microcloud
   remote_user: woakley
   become: yes
@@ -6,10 +7,22 @@
 
   tasks:
 
-  - name: install snap pkgs
+  - name: install lxd snap pkg
     community.general.snap:
-      name:
-        - lxd 
-        - microceph
-        - microovn
-        - microcloud 
+      name: lxd 
+      channel: 5.21/stable
+
+  - name: install microceph snap pkg
+    community.general.snap:
+      name: microceph
+      channel: quincy/stable
+
+  - name: install microovn snap pkg
+    community.general.snap:
+      name: microovn 
+      channel: 22.03/stable
+
+  - name: install microcloud snap pkg
+    community.general.snap:
+      name: microcloud
+      channel: latest/stable
